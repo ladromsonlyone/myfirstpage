@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Велосипедный кастом-шоп</title>
+<style>
+    /* Общие стили для страницы */
+    body {
+        background-color: #b6a922c7;
+        font-family: sans-serif;
+        padding: 20px;
+    }
+
+    /* Стили для шапки сайта */
+    .main-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        padding: 15px 30px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+    }
+    .nav-links a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: #000;
+    }
+
+    /* Главная флекс-сетка для контента */
+    .main-content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    /* Стили для карточки товара */
+    .product-card {
+        background-color: #fff;
+        width: 300px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        text-align: center;
+    }
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+
+    /* Стили для кнопок */
+    .buy-button {
+        background-color: #000000;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    .buy-button:hover {
+        background-color: #333;
+    }
+
+    /* Стили для формы */
+    form {
+        background-color: #f9f9f9;
+        width: 400px;
+        padding: 25px;
+        border-radius: 12px;
+    }
+    input[type="text"], input[type="tel"], textarea {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+    input:focus, textarea:focus {
+        border-color: #9f5050;
+        outline: none;  
+    }
+    
+    form button {
+        background-color: #9f5050;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+    }
+    form button:hover {
+        background-color: #823f3f;
+    }
+    
+    form label {
+        display: inline-block;
+        margin-bottom: 15px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo"><strong>FixieShop</strong></div>
+        <nav class="nav-links">
+            <a href="#">Каталог</a>
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+            <a href="#" class="cart-link">Корзина (0)</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="product-card">
+            <h2>Трековый велосипед Fuji Feather</h2>
+            <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=600&q=80" alt="Трековый велосипед Fuji Feather">
+            <ul>
+                <li>Материал рамы: Хромомолибден (Сr-Mo)</li>
+                <li>Material вилки: Хромомолибден (Сr-Mo)</li>
+                <li>Вес: 9.5 кг</li>
+                <li>Тип втулки: Flip-Flop</li>   
+            </ul>
+            <p class="price">45 000 <span>₽</span></p>
+            <button class="buy-button">Купить</button>
+        </section>
+
+        <form>
+            <h2>Заявка на кастомную сборку</h2>
+            <input type="text" placeholder="Имя" required>
+            <input type="tel" placeholder="Ваш номер телефона">
+            <textarea placeholder="Опишите велосипед вашей мечты"></textarea>
+            
+            <input type="checkbox" id="handlebar">
+            <label for="handlebar">Нужен руль-баран (иначе будет прямой)</label>
+            
+            <button type="submit">Отправить заявку</button>
+        </form>
+    </main>
+
+    <script>
+        // === ЛОГИКА ДЛЯ КНОПКИ "КУПИТЬ" И СЧЁТЧИКА ===
+        const buyBtn = document.querySelector('.buy-button');
+        const cartLink = document.querySelector('.cart-link'); 
+        let cartItemsCount = 0; 
+
+        buyBtn.addEventListener('click', function() {
+            // 1. Меняем состояние самой кнопки
+            buyBtn.innerText = 'Добавлено в корзину! Check ✔';
+            buyBtn.style.backgroundColor = '#4caf50';
+            
+            // 2. Выполняем задание со счётчиком
+            cartItemsCount++; // Увеличиваем число на 1
+            cartLink.innerText = 'Корзина (' + cartItemsCount + ')'; // Обновляем текст в шапке
+        });
+
+        // === ЛОГИКА ДЛЯ ФОРМЫ ЗАЯВКИ ===
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                const userName = form.querySelector('input[type="text"]').value;
+                alert('Спасибо, ' + userName + '! Ваша заявка на кастомный байк принята. Скоро свяжемся!');
+            });
+        }
+    </script>
+
+</body>
+</html>
